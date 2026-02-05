@@ -20,7 +20,8 @@ export default {
       }
 
       const roomId = searchParams.get('room') || 'default';
-      const roomStub = env.RELAY_ROOM.get(env.RELAY_ROOM.idFromName(roomId));
+      const options = env.LOCATION_HINT ? { locationHint: env.LOCATION_HINT } : {};
+      const roomStub = env.RELAY_ROOM.get(env.RELAY_ROOM.idFromName(roomId), options);
       return roomStub.fetch(request);
     }
 
